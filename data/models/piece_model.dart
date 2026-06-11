@@ -1,16 +1,10 @@
 class PieceModel {
   final String id;
-
   String materialType;
-
   double length;
-
   double width;
-
   int quantity;
-
   bool completed;
-
   String note;
 
   PieceModel({

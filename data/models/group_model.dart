@@ -3,17 +3,14 @@ import 'sub_group_model.dart';
 
 class GroupModel {
   final String id;
-
-  final String name;
-
-  final List<PieceModel> pieces;
-
-  final List<SubGroupModel> subGroups;
+  String name;
+  List<PieceModel> pieces;
+  List<SubGroupModel> subGroups;
 
   GroupModel({
     required this.id,
     required this.name,
     required this.pieces,
-    required this.subGroups,
-  });
+    List<SubGroupModel>? subGroups,
+  }) : subGroups = subGroups ?? [];
 }

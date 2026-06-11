@@ -2,9 +2,7 @@ import 'piece_model.dart';
 
 class SubGroupModel {
   final String id;
-
   String name;
-
   List<PieceModel> pieces;
 
   SubGroupModel({

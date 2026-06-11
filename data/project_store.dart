@@ -9,9 +9,8 @@ class ProjectStore {
     ...fakeProjects,
   ];
 
-  static List<ProjectModel> getProjects() {
-    return _projects;
-  }
+  // getter برای دسترسی مستقیم
+  static List<ProjectModel> get projects => _projects;
 
   static void addProject(ProjectModel project) {
     _projects.add(project);
@@ -21,10 +20,7 @@ class ProjectStore {
     required String projectId,
     required GroupModel group,
   }) {
-    final project = _projects.firstWhere(
-      (p) => p.id == projectId,
-    );
-
+    final project = _projects.firstWhere((p) => p.id == projectId);
     project.groups.add(group);
   }
 
@@ -33,11 +29,7 @@ class ProjectStore {
     required String groupId,
     required SubGroupModel subGroup,
   }) {
-    final group = _findGroup(
-      projectId,
-      groupId,
-    );
-
+    final group = _findGroup(projectId, groupId);
     group.subGroups.add(subGroup);
   }
 
@@ -46,11 +38,7 @@ class ProjectStore {
     required String groupId,
     required PieceModel piece,
   }) {
-    final group = _findGroup(
-      projectId,
-      groupId,
-    );
-
+    final group = _findGroup(projectId, groupId);
     group.pieces.add(piece);
   }
 
@@ -60,32 +48,13 @@ class ProjectStore {
     required String subGroupId,
     required PieceModel piece,
   }) {
-    final subGroup = _findSubGroup(
-      projectId,
-      groupId,
-      subGroupId,
-    );
-
+    final subGroup = _findSubGroup(projectId, groupId, subGroupId);
     subGroup.pieces.add(piece);
   }
 
-  static void togglePiece(
-    PieceModel piece,
-  ) {
-    piece.completed = !piece.completed;
-  }
-
-  static GroupModel _findGroup(
-    String projectId,
-    String groupId,
-  ) {
-    final project = _projects.firstWhere(
-      (p) => p.id == projectId,
-    );
-
-    return project.groups.firstWhere(
-      (g) => g.id == groupId,
-    );
+  static GroupModel _findGroup(String projectId, String groupId) {
+    final project = _projects.firstWhere((p) => p.id == projectId);
+    return project.groups.firstWhere((g) => g.id == groupId);
   }
 
   static SubGroupModel _findSubGroup(
@@ -93,13 +62,7 @@ class ProjectStore {
     String groupId,
     String subGroupId,
   ) {
-    final group = _findGroup(
-      projectId,
-      groupId,
-    );
-
-    return group.subGroups.firstWhere(
-      (s) => s.id == subGroupId,
-    );
+    final group = _findGroup(projectId, groupId);
+    return group.subGroups.firstWhere((s) => s.id == subGroupId);
   }
 }
